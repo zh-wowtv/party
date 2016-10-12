@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
+import { PARTIES_DECLARATIONS } from './parties';
 
 @NgModule({
   // Components, Pipes, Directive
   declarations: [
-    AppComponent
+    AppComponent,
+    ...PARTIES_DECLARATIONS
   ],
   // Entry Components
   entryComponents: [
@@ -16,7 +20,9 @@ import { AppComponent } from './app.component';
   ],
   // Modules
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   // Main Component
   bootstrap: [ AppComponent ]
