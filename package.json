@@ -1,5 +1,6 @@
 {
-  "name": "angular2-meteor-base",
+  "name": "party",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "meteor run",
