@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
+import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { PARTIES_DECLARATIONS } from './parties';
 
@@ -22,7 +24,8 @@ import { PARTIES_DECLARATIONS } from './parties';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   // Main Component
   bootstrap: [ AppComponent ]
