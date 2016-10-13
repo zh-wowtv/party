@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AccountsModule } from 'angular2-meteor-accounts-ui';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 import { routes, ROUTES_PROVIDERS } from './app.routes';
 import { AppComponent } from './app.component';
@@ -28,7 +29,8 @@ import { PARTIES_DECLARATIONS } from './parties';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    AccountsModule
+    AccountsModule,
+    Ng2PaginationModule
   ],
   // Main Component
   bootstrap: [ AppComponent ]
