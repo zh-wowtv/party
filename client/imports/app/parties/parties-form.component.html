@@ -1,12 +1,15 @@
-<form [formGroup]='addForm' (ngSubmit)='addParty()'>
-  <label for="name">Name</label>
-  <input type="text" placeholder="name" formControlName='name'>
+<div *ngIf="!user">Need to login to add party.</div>
+<div *ngIf="user">
+  <form [formGroup]='addForm' (ngSubmit)='addParty()'>
+    <label for="name">Name</label>
+    <input type="text" placeholder="name" formControlName='name'>
 
-  <label for="description"></label>
-  <input type="text" placeholder="description" formControlName='description'>
+    <label for="description"></label>
+    <input type="text" placeholder="description" formControlName='description'>
 
-  <label for="location"></label>
-  <input type="text" placeholder="location" formControlName='location'>
+    <label for="location"></label>
+    <input type="text" placeholder="location" formControlName='location'>
 
-  <button type='submit'>Add</button>
-</form>
+    <button type='submit'>Add</button>
+  </form>
+</div>

@@ -1,6 +1,8 @@
 import { Component , OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Meteor } from 'meteor/meteor';
+
 import 'rxjs/add/operator/map';
 
 import template from './party-details.component.html';
@@ -30,6 +32,11 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
   }
 
   updateParty() {
+    if (!Meteor.userId()) {
+			alert("Need login to update party!");
+      return;
+    }
+
     Parties.update(this.party._id,{
       $set: {
 				name: this.party.name,

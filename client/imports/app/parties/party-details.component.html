@@ -2,8 +2,8 @@
 But it's possible because we input in browser -->
 <header *ngIf="party">
   <h2>{{party.name}}</h2> 
-  <p>{{party.description}}</p>
-  <p>{{party.location}}</p>
+  <!--<p>{{party.description}}</p>
+  <p>{{party.location}}</p>-->
 </header>
 <form *ngIf="party" (submit)="updateParty()">
   <label>Name</label>

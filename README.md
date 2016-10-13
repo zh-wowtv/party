@@ -10,4 +10,8 @@ CMS - Admin panel. Angular 2 client
 
 Web - Web site. Angular 2 client
 
+## TODO
+
+Only allow own to update details
+
 ## References
