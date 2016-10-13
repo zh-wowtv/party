@@ -22,7 +22,13 @@
             <p>{{party.description}}</p>
             <p>{{party.location}}</p>
             <button (click)="removeParty(party)">X</button>
-        </li>
+            <div>
+                Who is coming:
+                Yes - {{party | rsvp:'yes'}}
+                Maybe - {{party | rsvp:'maybe'}}
+                No - {{party | rsvp:'no'}}
+            </div>
+        </li>        
     </ul>
 
     <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>

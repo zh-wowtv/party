@@ -32,8 +32,14 @@ function buildQuery(partyId?: string, location?: string): Object {
           $exists: true
         }
       }]
-    }]
-  };
+    },
+    {
+      $and: [
+        { invited: this.userId },
+        { invited: { $exists: true } }
+      ]
+    }    
+  ]};
  
   // if (partyId) {
   //   return {

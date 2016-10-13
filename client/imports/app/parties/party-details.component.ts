@@ -35,9 +35,12 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
         if (this.partySubscription) {
           this.partySubscription.unsubscribe();
         }
-        this.partySubscription = MeteorObservable.subscribe('party')
+        this.partySubscription = MeteorObservable.subscribe('party',this.partyId)
         	.subscribe(() => {
-            this.party = Parties.findOne({_id: this.partyId});
+            MeteorObservable.autorun().subscribe(() => {
+							this.party = Parties.findOne({_id: this.partyId});
+              this.getUsers(this.party);
+            })            
           });
       })
 
@@ -47,18 +50,46 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
 
     this.uninvitedSub = MeteorObservable.subscribe('uninvited', this.partyId)
     	.subscribe( () => {
-        this.users = Users.find({
-          _id: {
-            $ne: Meteor.userId()
-          }
-        }).zone();
+        this.getUsers(this.party);
+        // this.users = Users.find({
+        //   _id: {
+        //     $ne: Meteor.userId()
+        //   }
+        // }).zone();
       })
+  }
+
+	getUsers(party: Party) {
+    if (party) {
+      this.users = Users.find({
+        _id: {
+          $nin: party.invited || [],
+          $ne: Meteor.userId()
+        }
+      }).zone();
+    }
   }
 
   ngOnDestroy() {
 		this.subscription.unsubscribe();
     this.partySubscription.unsubscribe();
     this.uninvitedSub.unsubscribe();
+  }
+
+	invite(user: Meteor.User) {
+    MeteorObservable.call('invite', this.party._id, user._id).subscribe(() => {
+      alert('User successfully invited.');
+    }, (error) => {
+      alert(`Failed to invite due to ${error}`);
+    });
+  }
+
+  reply(rsvp: string) {
+    MeteorObservable.call('reply', this.party._id, rsvp).subscribe(() => {
+      alert('You successfully replied.');
+    }, (error) => {
+      alert(`Failed to reply due to ${error}`);
+    });
   }
 
   updateParty() {
