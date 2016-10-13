@@ -20,7 +20,8 @@ export class PartiesListComponent {
 
   removeParty(party: Party) {
     if ( !Meteor.userId() ) {
-			alert("Need to login to remove party.")
+			alert("Need to login to remove party.")；
+      return;
     }
     Parties.remove(party._id);
   }
