@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Meteor } from 'meteor/meteor';
 
 import { Parties } from '../../../../both/collections/parties.collection';
 import { Party } from '../../../../both/models/party.model';
@@ -18,6 +19,9 @@ export class PartiesListComponent {
   }
 
   removeParty(party: Party) {
+    if ( !Meteor.userId() ) {
+			alert("Need to login to remove party.")
+    }
     Parties.remove(party._id);
   }
 }
