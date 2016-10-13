@@ -8,12 +8,14 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { routes, ROUTES_PROVIDERS } from './app.routes';
 import { AppComponent } from './app.component';
 import { PARTIES_DECLARATIONS } from './parties';
-
+import { SHARED_DECLARATIONS } from './shared';
+ 
 @NgModule({
   // Components, Pipes, Directive
   declarations: [
     AppComponent,
-    ...PARTIES_DECLARATIONS
+    ...PARTIES_DECLARATIONS,
+    ...SHARED_DECLARATIONS
   ],
   // Entry Components
   entryComponents: [

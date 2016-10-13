@@ -14,6 +14,6 @@ declare module 'meteor/tmeasday:publish-counts' {
   export const Counts: CountsObject;
 }
 
-declare var Fake: {
-    sentence(words: number): string;
-}
+// declare var Fake: {
+//     sentence(words: number): string;
+// }

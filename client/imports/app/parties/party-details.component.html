@@ -1,23 +1,32 @@
 <!-- It's not possible there is no party if click the parties-list. 
 But it's possible because we input in browser -->
-<header *ngIf="party">
-  <h2>{{party.name}}</h2> 
-  <!--<p>{{party.description}}</p>
-  <p>{{party.location}}</p>-->
-</header>
-<form *ngIf="party" (submit)="updateParty()">
-  <label>Name</label>
-  <input type="text" placeholder="Name" [(ngModel)]="party.name" name="a">
+<div *ngIf="party">
+  <header>
+    <h2>{{party.name}}</h2> 
+    <!--<p>{{party.description}}</p>
+    <p>{{party.location}}</p>-->
+  </header>
+  <form (submit)="updateParty()">
+    <label>Name</label>
+    <input type="text" placeholder="Name" [(ngModel)]="party.name" name="a">
 
-  <label>Description</label>
-  <input type="text" placeholder="Description" [(ngModel)]="party.description" name="b">
+    <label>Description</label>
+    <input type="text" placeholder="Description" [(ngModel)]="party.description" name="b">
 
-  <label>Location</label>
-  <input type="text" placeholder="Location" [(ngModel)]="party.location" name="c">
+    <label>Location</label>
+    <input type="text" placeholder="Location" [(ngModel)]="party.location" name="c">
 
-  <button type="submit">Update</button>
-  <a [routerLink]="['/']">Back</a>
-</form>
+    <button type="submit">Update</button>
+    <a [routerLink]="['/']">Back</a>
+  </form>
+
+  <p>Users to invite:</p>
+  <ul>
+    <li *ngFor="let user of users | async">
+      <div>{{user | displayName}}</div>
+    </li>
+  </ul>
+</div>
 
 <header *ngIf="!party">
   The party not found!
