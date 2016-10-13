@@ -23,12 +23,13 @@ export class PartiesFormComponent implements OnInit {
 		this.addForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
-      location: ['',Validators.required]
+      location: ['',Validators.required],
+      public: [false]
     })
   }
 
   addParty() {
-    if (!Meteor.userId()) {
+    if (!this.user._id) {
 			alert('Please login to add party');
       return;
     }

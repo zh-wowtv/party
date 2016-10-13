@@ -8,17 +8,20 @@ export function preloadData() {
 			{
         name: 'House warming',
         description: 'I moved to a new house',
-        location: 'Singapore'
+        location: 'Singapore',
+        public: true
       },
 			{
         name: 'Swimming',
         description: 'At swimming pool',
-        location: 'Shanghai'
+        location: 'Shanghai',
+        public: true
       },
 			{
         name: 'Rainbow',
         description: 'I saw rainbow today',
-        location: 'Shenzhen'
+        location: 'Shenzhen',
+        public: false
       }      
     ];
 

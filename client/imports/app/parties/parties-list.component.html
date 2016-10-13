@@ -4,6 +4,9 @@
 <br>
 <parties-form></parties-form>
 <br>
+<input type="text" #searchText placeholder="Search by location">
+<button (click)="search(searchText.value)">Search</button>
+<br>
 <ul>
     <li *ngFor="let party of parties | async">
         <a [routerLink]="['/party',party._id]">{{party.name}}</a>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Meteor } from 'meteor/meteor';
+import { MeteorObservable } from 'meteor-rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Parties } from '../../../../both/collections/parties.collection';
 import { Party } from '../../../../both/models/party.model';
@@ -11,11 +13,17 @@ import template from './parties-list.component.html';
   selector: 'parties-list',
   template
 })
-export class PartiesListComponent {
+export class PartiesListComponent implements OnInit, OnDestroy {
   parties:Observable<Party[]>;
+	subscription : Subscription;
 
-  constructor() {
-    this.parties = Parties.find({}).zone();
+  ngOnInit() {
+		this.parties = Parties.find({}).zone();
+    this.subscription = MeteorObservable.subscribe('parties').subscribe();
+  }
+
+  ngOnDestroy() {
+		this.subscription.unsubscribe();
   }
 
   removeParty(party: Party) {
@@ -24,5 +32,9 @@ export class PartiesListComponent {
       return;
     }
     Parties.remove(party._id);
+  }
+
+  search(value: string) {    
+    this.parties = Parties.find(value ? {location: value} : {}).zone();
   }
 }
