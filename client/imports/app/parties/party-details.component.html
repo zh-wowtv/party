@@ -1,5 +1,24 @@
-<header>
-  <h2>{{party.name}}</h2>
- 
+<!-- It's not possible there is no party if click the parties-list. 
+But it's possible because we input in browser -->
+<header *ngIf="party">
+  <h2>{{party.name}}</h2> 
   <p>{{party.description}}</p>
+  <p>{{party.location}}</p>
+</header>
+<form *ngIf="party" (submit)="updateParty()">
+  <label>Name</label>
+  <input type="text" placeholder="Name" [(ngModel)]="party.name" name="a">
+
+  <label>Description</label>
+  <input type="text" placeholder="Description" [(ngModel)]="party.description" name="b">
+
+  <label>Location</label>
+  <input type="text" placeholder="Location" [(ngModel)]="party.location" name="c">
+
+  <button type="submit">Update</button>
+  <a [routerLink]="['/']">Back</a>
+</form>
+
+<header *ngIf="!party">
+  The party not found!
 </header>
