@@ -129,7 +129,7 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateParty() {
+  saveParty() {
     if (!Meteor.userId()) {
 			alert("Need login to update party!");
       return;
