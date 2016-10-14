@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { PaginationService } from 'ng2-pagination';
 import { Counts } from 'meteor/tmeasday:publish-counts';
- 
+import { InjectUser } from 'angular2-meteor-accounts-ui';
+
 import { Parties } from '../../../../both/collections/parties.collection';
 import { Party } from '../../../../both/models/party.model';
 import { PagingOptions } from '../../../../both/models/paging-options';
@@ -18,6 +19,7 @@ import template from './parties-list.component.html';
   selector: 'parties-list',
   template
 })
+@InjectUser('user')
 export class PartiesListComponent implements OnInit, OnDestroy {
   parties:Observable<Party[]>;
 	subscription : Subscription;
@@ -28,6 +30,7 @@ export class PartiesListComponent implements OnInit, OnDestroy {
 	partiesSize: number = 0;
   autorunSub: Subscription;
 	location: Subject<string> = new Subject<string>();
+	user: Meteor.User;
 
 	constructor(
     private paginationService: PaginationService
@@ -77,6 +80,10 @@ export class PartiesListComponent implements OnInit, OnDestroy {
       this.partiesSize = Counts.get('numberOfParties');
       this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
     });
+  }
+
+	isOwner(party: Party) : boolean {
+    return this.user && this.user._id === party.owner;
   }
 
   ngOnDestroy() {

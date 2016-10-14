@@ -9,61 +9,81 @@ export function preloadData() {
 			{
         name: 'House warming',
         description: 'I moved to a new house',
-        location: 'Singapore',
+        location: {
+          name: 'Singapore'
+        },
         public: true
       },
 			{
         name: 'Swimming',
         description: 'At swimming pool',
-        location: 'Shanghai',
+        location: {
+					name: 'Shanghai'
+        }, 
         public: true
       },
 			{
         name: 'Rainbow',
         description: 'I saw rainbow today',
-        location: 'Shenzhen',
+        location: {
+					name: 'Shenzhen'
+        }, 
         public: false
       },
       {
         name: 'My own party',
         description: 'This is a nice party',
-        location: 'Shenzhen',
+        location: {
+          name:'Shenzhen'
+        },
         public: false
       },      
       {
         name: 'Party ABC',
         description: 'This is ABC',
-        location: 'SG',
+        location: {
+					name: 'SG'
+        },
         public: true
       },      
       {
         name: 'Party ABC',
         description: 'This is ABC',
-        location: 'SG',
+        location: {
+          name: 'SG'
+        },
         public: true
       },
       {
         name: 'Party ABB',
         description: 'This is ABB',
-        location: 'SG',
+        location: {
+          name: 'SG'
+        },
         public: true
       },     
       {
         name: 'Party ABD',
         description: 'This is ABD',
-        location: 'SG',
+        location: {
+					name: 'SG'
+        },
         public: true
       },      
       {
         name: 'Party ABE',
         description: 'This is ABE',
-        location: 'SH',
+        location: { 
+          name: 'SH'
+        },
         public: true
       },
       {
         name: 'Party BAA',
         description: 'This is BAA',
-        location: 'SG',
+        location: {
+					name: 'SG'
+        },
         public: true
       }      
     ];

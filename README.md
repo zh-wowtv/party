@@ -12,6 +12,7 @@ Web - Web site. Angular 2 client
 
 ## TODO
 
-Only allow own to update details
+- Need to setup SMTP to enable sending email
+- Setup our own Google Map API key in app.module.ts
 
 ## References

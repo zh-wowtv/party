@@ -3,37 +3,50 @@ But it's possible because we input in browser -->
 <div *ngIf="party">
   <header>
     <h2>{{party.name}}</h2> 
-    <!--<p>{{party.description}}</p>
-    <p>{{party.location}}</p>-->
   </header>
   <form (submit)="updateParty()">
     <label>Name</label>
-    <input type="text" placeholder="Name" [(ngModel)]="party.name" name="a">
+    <input [disabled]="!isOwner" type="text" placeholder="Name" [(ngModel)]="party.name" name="name">
 
     <label>Description</label>
-    <input type="text" placeholder="Description" [(ngModel)]="party.description" name="b">
+    <input [disabled]="!isOwner" type="text" placeholder="Description" [(ngModel)]="party.description" name="description">
 
     <label>Location</label>
-    <input type="text" placeholder="Location" [(ngModel)]="party.location" name="c">
+    <input [disabled]="!isOwner" type="text" placeholder="Location" [(ngModel)]="party.location.name" name="location">
 
-    <button type="submit">Update</button>
+    <button [disabled]="!isOwner" type="submit">Update</button>
     <a [routerLink]="['/']">Back</a>
   </form>
 
-  <p>Users to invite:</p>
-  <ul>
-    <li *ngFor="let user of users | async">
-      <div>{{user | displayName}}</div>
-      <button (click)="invite(user)">Invite</button>
-    </li>
-  </ul>
-
-  <div>
+  <div *ngIf="isOwner || isPublic">
+    <p>Users to invite:</p>
+    <ul>
+      <li *ngFor="let user of users | async">
+        <div>{{user | displayName}}</div>
+        <button (click)="invite(user)">Invite</button>
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="isInvited">
     <h2>Reply to the invitation</h2>
     <input type="button" value="I'm going!" (click)="reply('yes')">
     <input type="button" value="Maybe" (click)="reply('maybe')">
     <input type="button" value="No" (click)="reply('no')">
   </div>
+
+  <sebm-google-map
+  [latitude]="lat || centerLat"
+  [longitude]="lng || centerLng"
+  [zoom]="8"
+  (mapClick)="mapClicked($event)">
+    <sebm-google-map-marker
+      *ngIf="lat && lng"
+      [latitude]="lat"
+      [longitude]="lng">
+    </sebm-google-map-marker>
+  </sebm-google-map>
+
 </div>
 
 <header *ngIf="!party">
