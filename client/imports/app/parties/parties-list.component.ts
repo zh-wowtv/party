@@ -31,6 +31,7 @@ export class PartiesListComponent implements OnInit, OnDestroy {
   autorunSub: Subscription;
 	location: Subject<string> = new Subject<string>();
 	user: Meteor.User;
+	imagesSubs: Subscription;
 
 	constructor(
     private paginationService: PaginationService
@@ -80,6 +81,8 @@ export class PartiesListComponent implements OnInit, OnDestroy {
       this.partiesSize = Counts.get('numberOfParties');
       this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
     });
+
+    this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
   }
 
 	isOwner(party: Party) : boolean {
@@ -89,6 +92,8 @@ export class PartiesListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 		this.subscription.unsubscribe();
     this.optionsSub.unsubscribe();
+    this.autorunSub.unsubscribe();
+    this.imagesSubs.unsubscribe();
   }
 
 	onPageChanged(page: number): void {

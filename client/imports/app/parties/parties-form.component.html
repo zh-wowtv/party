@@ -1,6 +1,6 @@
 <div *ngIf="!user">Need to login to add party.</div>
 <div *ngIf="user" class="container-fluid">
-  <form [formGroup]="addForm" (ngSubmit)="addParty()">
+  <form [formGroup]="addForm" (ngSubmit)="addParty(); upload.reset()">
     <fieldset class="form-group">
       <md-input formControlName="name" placeholder="Party name"></md-input>
       <md-input formControlName="description" placeholder="Description"></md-input>
@@ -9,23 +9,9 @@
       <div class="checkbox">
         <md-checkbox formControlName="public">Public</md-checkbox>
       </div>
-  
+        
+      <parties-upload #upload (onFile)="onImage($event)"></parties-upload>
       <button md-raised-button type="submit">Add</button>
     </fieldset>
   </form>
-  <!--<form [formGroup]='addForm' (ngSubmit)='addParty()'>
-    <label for="name">Name</label>
-    <input type="text" placeholder="name" formControlName='name'>
-
-    <label for="description"></label>
-    <input type="text" placeholder="description" formControlName='description'>
-
-    <label for="location"></label>
-    <input type="text" placeholder="location" formControlName='location'>
-
-    <label for="public">Public</label>
-    <input type="checkbox" formControlName="public">
-
-    <button type='submit'>Add</button>
-  </form>-->
 </div>

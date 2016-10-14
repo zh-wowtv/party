@@ -15,6 +15,7 @@ import { Parties } from '../../../../both/collections/parties.collection';
 export class PartiesFormComponent implements OnInit {
   addForm : FormGroup;
 	user: Meteor.User;
+	images: string[] = [];
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -42,10 +43,15 @@ export class PartiesFormComponent implements OnInit {
         location: {
           name: this.addForm.value.location
         },
+        images: this.images,
         public: this.addForm.value.public,
         owner: this.user._id
       })      
       this.addForm.reset();
     }
+  }
+
+  onImage(imageId: string) {
+    this.images.push(imageId);
   }
 }

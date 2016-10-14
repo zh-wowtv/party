@@ -18,6 +18,7 @@ import { MdCoreModule } from "@angular2-material/core";
 import { MdCheckboxModule } from "@angular2-material/checkbox";
 import {MdListModule} from "@angular2-material/list";
 import {AUTH_DECLARATIONS} from "./auth/index";
+import {FileDropModule} from "angular2-file-drop";
 
 @NgModule({
   // Components, Pipes, Directive
@@ -52,7 +53,8 @@ import {AUTH_DECLARATIONS} from "./auth/index";
     MdInputModule.forRoot(),
     MdCardModule.forRoot(),
     MdCheckboxModule.forRoot(),
-    MdListModule.forRoot()
+    MdListModule.forRoot(),
+    FileDropModule
   ],
   // Main Component
   bootstrap: [ AppComponent ]
